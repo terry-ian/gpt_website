@@ -35,7 +35,7 @@ def generate_answer(question):
     return response.text.replace('**','').replace('*','-')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 # `api/index.py` 入口點
 def handler(request):
