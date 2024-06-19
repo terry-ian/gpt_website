@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import google.generativeai as genai
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 # 設定你的 API 金鑰
 os.environ["GOOGLE_API_KEY"] = "AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o"
