@@ -1,4 +1,4 @@
-Flask==3.0.3
+Flask==2.0.1
 google-generativeai
 gunicorn
 typing-inspect==0.8.0
