@@ -36,7 +36,3 @@ def generate_answer(question):
 
 if __name__ == '__main__':
     app.run()
-
-# 入口點
-def handler(request):
-    return app(request)
