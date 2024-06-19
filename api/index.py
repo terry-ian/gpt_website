@@ -6,7 +6,9 @@ import os
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 # 設定你的 API 金鑰
-os.environ["GOOGLE_API_KEY"] = "AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o"
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY environment variable not set")
 
 # 初始化 Gemini API 客戶端
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
