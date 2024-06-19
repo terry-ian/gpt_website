@@ -1,3 +1,4 @@
 Flask
 google-generativeai
 gunicorn
+spacy==3.2.6
