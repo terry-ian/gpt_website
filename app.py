@@ -12,7 +12,20 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o"
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-chat = model.start_chat(history=[])
+chat = model.start_chat(history=[
+    {
+      "role": "user",
+      "parts": [
+        "回復設定繁體中文，除非要翻譯功能時再翻譯成其他語言，然後盡量查詢後再回覆，不要有錯誤資訊和唬爛訊息",
+      ],
+    },
+    {
+      "role": "model",
+      "parts": [
+        "好的，我明白了。我會盡力以繁體中文回覆您的問題，除非您明確要求翻譯成其他語言。我會盡量查詢後再回覆，並避免提供錯誤資訊或虛假訊息。請盡情提問！ \n",
+      ],
+    },
+  ])
 
 @app.route('/')
 def index():
