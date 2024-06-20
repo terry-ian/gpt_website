@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torin-Website問答網站</title>
+    <title>Torin-Web問答網站</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Torin-Website問答網站</h1>
+        <h1>Torin-Web問答網站</h1>
         <div id="chat-history" class="chat-history"></div>
         <div id="loading" style="display: none;">
             <img src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." />
@@ -55,6 +55,13 @@
                 // 確保新的內容可見
                 chatHistory.scrollTop = chatHistory.scrollHeight;
             });
+        });
+
+        document.getElementById('question').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                document.getElementById('question-form').dispatchEvent(new Event('submit'));
+            }
         });
     </script>
 </body>
