@@ -44,8 +44,14 @@ def ask():
 def generate_answer(question):
     # 使用 Google Gemini API 來生成答案
     response = chat.send_message(question)
-    #response = model.generate_content(question)
-    return response.text.replace('**','').replace('*','-')
+
+    # 假設回答中包含程式碼，使用適當的 HTML 包裹代碼塊
+    answer_text = response.text.replace('**', '').replace('*', '-')
+
+    # 如果有 ` ```python ` 這種代碼塊的標記，可以進行替換
+    answer_text = answer_text.replace('```python', '<pre><code class="python">').replace('```', '</code></pre>')
+    
+    return answer_text
 
 if __name__ == '__main__':
     app.run()
