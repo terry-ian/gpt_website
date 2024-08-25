@@ -43,18 +43,24 @@
                 body: JSON.stringify({ question: question }),
             })
             .then(response => response.json())
-            .then(data => {
-                document.getElementById('loading').style.display = 'none';
-
-                // 增加回答到歷史紀錄
-                const answerElement = document.createElement('div');
-                answerElement.className = 'answer';
-                answerElement.innerText = '回答：' + data.answer;
-                chatHistory.appendChild(answerElement);
-
-                // 確保新的內容可見
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            });
+			// 在處理回答的部分
+			.then(data => {
+				document.getElementById('loading').style.display = 'none';
+			
+				// 增加回答到歷史紀錄
+				const answerElement = document.createElement('div');
+				answerElement.className = 'answer';
+				
+				// 將換行符轉換為 <br>
+				const formattedAnswer = data.answer.replace(/\n/g, '<br>');
+				
+				// 使用 innerHTML 插入內容
+				answerElement.innerHTML = '回答：' + formattedAnswer;
+				chatHistory.appendChild(answerElement);
+			
+				// 確保新的內容可見
+				chatHistory.scrollTop = chatHistory.scrollHeight;
+			});
         });
 
         document.getElementById('question').addEventListener('keydown', function(event) {
