@@ -23,7 +23,8 @@ body {
 }
 
 h1 {
-    margin-bottom: 20px;
+    font-size: 12px; /* 調整為你需要的字體大小，例如 24px */
+    margin-bottom: 5px; /* 調整標題下方的間距 */
 }
 
 form {
