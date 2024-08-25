@@ -41,6 +41,7 @@ def ask():
 
     return jsonify({'answer': answer})
 
+
 def generate_answer(question):
     # 使用 Google Gemini API 來生成答案
     response = chat.send_message(question)
@@ -48,8 +49,14 @@ def generate_answer(question):
     # 假設回答中包含程式碼，使用適當的 HTML 包裹代碼塊
     answer_text = response.text.replace('**', '').replace('*', '-')
 
-    # 如果有 ` ```python ` 這種代碼塊的標記，可以進行替換
-    answer_text = answer_text.replace('```python', '<pre><code class="python">').replace('```', '</code></pre>')
+    # 判斷是否包含程式碼塊標記或常見的程式碼特徵
+    if '```' in answer_text or 'def ' in answer_text or 'class ' in answer_text or 'import ' in answer_text:
+        answer_text = answer_text.replace('```python', '<pre><code class="python">').replace('```', '</code></pre>')
+    elif '    ' in answer_text or '\t' in answer_text:  # 檢查是否有縮排
+        answer_text = f'<pre><code>{answer_text}</code></pre>'
+    else:
+        # 如果沒有明顯的程式碼特徵，但希望統一格式，仍然包裹代碼以防範例外
+        answer_text = f'<pre><code>{answer_text}</code></pre>'
     
     return answer_text
 
