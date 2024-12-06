@@ -6,10 +6,11 @@ import os
 app = Flask(__name__)
 
 # 設定你的 API 金鑰
-os.environ["GOOGLE_API_KEY"] = "AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o"
+gemini_key = os.getenv('gemini_key')
+os.environ["gemini_key"] = gemini_key
 
 # 初始化 Gemini API 客戶端
-genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
+genai.configure(api_key=gemini_key)
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 chat = model.start_chat(history=[
